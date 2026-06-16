@@ -9,27 +9,50 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as DashRouteImport } from './routes/_dash'
 
-export interface FileRoutesByFullPath {}
-export interface FileRoutesByTo {}
+const DashRoute = DashRouteImport.update({
+  id: '/_dash',
+  getParentRoute: () => rootRouteImport,
+} as any)
+
+export interface FileRoutesByFullPath {
+  '/': typeof DashRoute
+}
+export interface FileRoutesByTo {
+  '/': typeof DashRoute
+}
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/_dash': typeof DashRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: never
+  fullPaths: '/'
   fileRoutesByTo: FileRoutesByTo
-  to: never
-  id: '__root__'
+  to: '/'
+  id: '__root__' | '/_dash'
   fileRoutesById: FileRoutesById
 }
-export interface RootRouteChildren {}
-
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {}
+export interface RootRouteChildren {
+  DashRoute: typeof DashRoute
 }
 
-const rootRouteChildren: RootRouteChildren = {}
+declare module '@tanstack/react-router' {
+  interface FileRoutesByPath {
+    '/_dash': {
+      id: '/_dash'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof DashRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+  }
+}
+
+const rootRouteChildren: RootRouteChildren = {
+  DashRoute: DashRoute,
+}
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
