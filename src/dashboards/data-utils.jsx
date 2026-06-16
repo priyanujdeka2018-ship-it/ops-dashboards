@@ -235,19 +235,19 @@ export function deriveWorkforce(d) {
     const qualityGap = Math.max(0, QUALITY_TARGET - t.quality);                  // 0..15ish
     const csatGap = Math.max(0, CSAT_TARGET - t.csat);                            // 0..1
     const sev1Density = (t.sev1_escalations / Math.max(1, t.contributors)) * 100; // per-100 heads
-    const escRate = (t.escalations / Math.max(1, t.contributors)) * 100;
+    const escDensity = (t.escalations / Math.max(1, t.contributors));             // raw per-head
     const openLoad = t.open_escalations;
 
     const score = Math.round(
       Math.min(100,
-        qualityGap * 3.5 +
-        csatGap * 18 +
-        sev1Density * 1.1 +
-        escRate * 0.18 +
-        openLoad * 0.4
+        qualityGap * 4.0 +     // 0..60
+        csatGap * 20 +         // 0..20
+        sev1Density * 0.9 +    // 0..30ish
+        Math.min(escDensity, 5) * 2 +  // capped 0..10
+        Math.min(openLoad, 20) * 0.5   // capped 0..10
       )
     );
-    const band = score >= 50 ? "High" : score >= 25 ? "Medium" : "Low";
+    const band = score >= 55 ? "High" : score >= 28 ? "Medium" : "Low";
     const drivers = [];
     if (qualityGap >= 3) drivers.push(`Quality ${t.quality.toFixed(1)} vs ${QUALITY_TARGET} target`);
     if (csatGap >= 0.15) drivers.push(`CSAT ${t.csat.toFixed(2)} vs ${CSAT_TARGET} target`);
