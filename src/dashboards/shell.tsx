@@ -8,7 +8,8 @@ import { useDash, type ScenarioId, type ThemeId, type DensityId } from "./app-co
 import { aurMono, aurSans, aurSerif, AurChip, AurButton } from "./atoms.jsx";
 // @ts-expect-error jsx module
 import { THEME_PRESETS, DENSITY_PRESETS } from "./data-utils.jsx";
-import { BriefingModal, AboutModal } from "./modals";
+// @ts-expect-error jsx module
+import { BriefingModal, AboutModal } from "./modals.jsx";
 
 const NAV = [
   { to: "/",          label: "Home",       desc: "Command center" },
@@ -29,7 +30,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   const updateSearch = (patch: Partial<{ s: ScenarioId; t: ThemeId; d: DensityId }>) => {
-    navigate({ to: pathname as any, search: (prev: any) => ({ ...prev, ...patch }) });
+    navigate({ to: pathname as any, search: ((prev: any) => ({ ...prev, ...patch })) as any });
   };
 
   const padX = densityPreset.padX;
@@ -65,7 +66,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             return (
               <Link
                 key={n.to} to={n.to as any}
-                search={(prev: any) => prev}
+                search={((prev: any) => prev) as any}
                 style={{
                   textDecoration: "none", padding: "9px 12px", borderRadius: 10,
                   background: active ? AUR.accentGlow : "transparent",
