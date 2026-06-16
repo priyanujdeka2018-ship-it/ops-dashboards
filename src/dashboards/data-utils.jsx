@@ -1,3 +1,4 @@
+import React from "react";
 // Shared data loader + formatting helpers for Scale Ops Command Center
 // Exposes (to window): useScaleData, fmt, statusColor, ROOT_CAUSE_LABELS, etc.
 
@@ -197,16 +198,4 @@ function applyScenario(data, scenario) {
   return out;
 }
 
-Object.assign(window, {
-  ROOT_CAUSE_LABELS,
-  WORK_TYPE_LABELS,
-  ROOT_CAUSE_FIX,
-  ROOT_CAUSE_DECISION,
-  SEVERITY_LABELS,
-  STATUS_COLORS,
-  classifyMetric,
-  fmt,
-  useScaleData,
-  Sparkline,
-  applyScenario,
-});
+export { ROOT_CAUSE_LABELS, WORK_TYPE_LABELS, ROOT_CAUSE_FIX, ROOT_CAUSE_DECISION, SEVERITY_LABELS, STATUS_COLORS, classifyMetric, fmt, useScaleData, Sparkline, applyScenario };

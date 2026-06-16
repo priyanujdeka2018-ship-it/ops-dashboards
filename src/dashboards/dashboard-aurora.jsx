@@ -1,3 +1,5 @@
+import React from "react";
+import { fmt, classifyMetric, Sparkline, ROOT_CAUSE_LABELS, WORK_TYPE_LABELS, ROOT_CAUSE_FIX, ROOT_CAUSE_DECISION, SEVERITY_LABELS, STATUS_COLORS, applyScenario, useScaleData } from "./data-utils";
 // Aurora · Scale Regional Ops Command Center
 // Editorial dark · Instrument Serif headers · Geist body · electric accent.
 // Wired interactivity: tab nav, work-type filter, pattern click → detail,
@@ -787,4 +789,4 @@ function AuroraDashboard({ data, scenario, setScenario, loading, region, accent 
   );
 }
 
-Object.assign(window, { AuroraDashboard, buildAurTheme, aurSans, aurSerif, aurMono });
+export { AuroraDashboard, buildAurTheme, aurSans, aurSerif, aurMono };
