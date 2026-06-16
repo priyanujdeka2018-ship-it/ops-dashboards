@@ -10,32 +10,72 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as DashRouteImport } from './routes/_dash'
+import { Route as DashIndexRouteImport } from './routes/_dash.index'
+import { Route as DashPatternsRouteImport } from './routes/_dash.patterns'
+import { Route as DashHealthRouteImport } from './routes/_dash.health'
+import { Route as DashClustersRouteImport } from './routes/_dash.clusters'
 
 const DashRoute = DashRouteImport.update({
   id: '/_dash',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashIndexRoute = DashIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashRoute,
+} as any)
+const DashPatternsRoute = DashPatternsRouteImport.update({
+  id: '/patterns',
+  path: '/patterns',
+  getParentRoute: () => DashRoute,
+} as any)
+const DashHealthRoute = DashHealthRouteImport.update({
+  id: '/health',
+  path: '/health',
+  getParentRoute: () => DashRoute,
+} as any)
+const DashClustersRoute = DashClustersRouteImport.update({
+  id: '/clusters',
+  path: '/clusters',
+  getParentRoute: () => DashRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof DashRoute
+  '/': typeof DashIndexRoute
+  '/clusters': typeof DashClustersRoute
+  '/health': typeof DashHealthRoute
+  '/patterns': typeof DashPatternsRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof DashRoute
+  '/clusters': typeof DashClustersRoute
+  '/health': typeof DashHealthRoute
+  '/patterns': typeof DashPatternsRoute
+  '/': typeof DashIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/_dash': typeof DashRoute
+  '/_dash': typeof DashRouteWithChildren
+  '/_dash/clusters': typeof DashClustersRoute
+  '/_dash/health': typeof DashHealthRoute
+  '/_dash/patterns': typeof DashPatternsRoute
+  '/_dash/': typeof DashIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/clusters' | '/health' | '/patterns'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/_dash'
+  to: '/clusters' | '/health' | '/patterns' | '/'
+  id:
+    | '__root__'
+    | '/_dash'
+    | '/_dash/clusters'
+    | '/_dash/health'
+    | '/_dash/patterns'
+    | '/_dash/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  DashRoute: typeof DashRoute
+  DashRoute: typeof DashRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -47,11 +87,55 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_dash/': {
+      id: '/_dash/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof DashIndexRouteImport
+      parentRoute: typeof DashRoute
+    }
+    '/_dash/patterns': {
+      id: '/_dash/patterns'
+      path: '/patterns'
+      fullPath: '/patterns'
+      preLoaderRoute: typeof DashPatternsRouteImport
+      parentRoute: typeof DashRoute
+    }
+    '/_dash/health': {
+      id: '/_dash/health'
+      path: '/health'
+      fullPath: '/health'
+      preLoaderRoute: typeof DashHealthRouteImport
+      parentRoute: typeof DashRoute
+    }
+    '/_dash/clusters': {
+      id: '/_dash/clusters'
+      path: '/clusters'
+      fullPath: '/clusters'
+      preLoaderRoute: typeof DashClustersRouteImport
+      parentRoute: typeof DashRoute
+    }
   }
 }
 
+interface DashRouteChildren {
+  DashClustersRoute: typeof DashClustersRoute
+  DashHealthRoute: typeof DashHealthRoute
+  DashPatternsRoute: typeof DashPatternsRoute
+  DashIndexRoute: typeof DashIndexRoute
+}
+
+const DashRouteChildren: DashRouteChildren = {
+  DashClustersRoute: DashClustersRoute,
+  DashHealthRoute: DashHealthRoute,
+  DashPatternsRoute: DashPatternsRoute,
+  DashIndexRoute: DashIndexRoute,
+}
+
+const DashRouteWithChildren = DashRoute._addFileChildren(DashRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
-  DashRoute: DashRoute,
+  DashRoute: DashRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
