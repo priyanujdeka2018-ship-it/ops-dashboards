@@ -241,13 +241,13 @@ export function deriveWorkforce(d) {
     const score = Math.round(
       Math.min(100,
         qualityGap * 3.5 +
-        csatGap * 22 +
-        sev1Density * 6 +
-        escRate * 0.4 +
-        openLoad * 0.6
+        csatGap * 18 +
+        sev1Density * 1.1 +
+        escRate * 0.18 +
+        openLoad * 0.4
       )
     );
-    const band = score >= 55 ? "High" : score >= 30 ? "Medium" : "Low";
+    const band = score >= 50 ? "High" : score >= 25 ? "Medium" : "Low";
     const drivers = [];
     if (qualityGap >= 3) drivers.push(`Quality ${t.quality.toFixed(1)} vs ${QUALITY_TARGET} target`);
     if (csatGap >= 0.15) drivers.push(`CSAT ${t.csat.toFixed(2)} vs ${CSAT_TARGET} target`);
