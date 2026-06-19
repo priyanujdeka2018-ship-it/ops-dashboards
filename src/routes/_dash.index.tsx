@@ -63,7 +63,7 @@ function Home() {
       <AurSection AUR={AUR} density={densityPreset} eyebrow="Leadership attention" title="Three things that matter this week.">
         <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
           {alerts.length === 0 && <Panel AUR={AUR}><div style={{ color: AUR.textFaint, fontStyle: "italic", textAlign: "center", padding: 24 }}>No leadership alerts this period. The region is holding the line.</div></Panel>}
-          {alerts.map((a, i) => (
+          {alerts.map((a: any, i: number) => (
             <Link key={i} to={a.to as any} search={((prev: any) => ({ ...prev, ...a.focus })) as any} style={{ textDecoration: "none" }}>
               <Panel AUR={AUR} hoverable accentEdge={a.severity === "High"}>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 20, alignItems: "center" }}>
