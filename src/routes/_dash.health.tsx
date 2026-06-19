@@ -285,23 +285,16 @@ function SummaryTile({ label, value, sub, status, AUR }: any) {
 }
 
 function WorkTypeSwitcher({ data, wt, AUR }: any) {
-  const { Link: _Link } = require("@tanstack/react-router");
-  // Use plain anchors via PillRow + onClick (PillRow calls onChange)
+  const navigate = useNavigate();
   const opts = data.workTypeRollup.map((r: any) => r.work_type);
   return (
     <div style={{ maxWidth: 540 }}>
-      <PillRow AUR={AUR} options={opts} value={wt} onChange={(v: string) => {
-        const url = new URL(window.location.href);
-        url.searchParams.set("wt", v);
-        url.searchParams.delete("tm");
-        window.history.pushState({}, "", url.toString());
-        window.dispatchEvent(new PopStateEvent("popstate"));
-      }} getLabel={(o: string) => WORK_TYPE_LABELS[o]} />
+      <PillRow AUR={AUR} options={opts} value={wt} onChange={(v: string) =>
+        navigate({ to: "/health", search: ((prev: any) => ({ ...prev, wt: v, tm: undefined })) as any })
+      } getLabel={(o: string) => WORK_TYPE_LABELS[o]} />
     </div>
   );
 }
-
-import { Link } from "@tanstack/react-router";
 
 function NavCard({ to, search, AUR, children }: any) {
   return (
