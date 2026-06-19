@@ -24,46 +24,14 @@ export const WORK_TYPE_LABELS = {
 };
 
 export const ROOT_CAUSE_FIX = {
-  policy_ambiguity: {
-    fix: "SOP rewrite + calibration huddle",
-    owner: "Policy Ops lead + frontline manager",
-    metric: "Reviewer agreement rate; repeat escalations",
-  },
-  reviewer_misalignment: {
-    fix: "Reviewer calibration + QA sampling boost",
-    owner: "Quality lead + reviewer manager",
-    metric: "Disagreement rate; QA defect rate",
-  },
-  quality_defect: {
-    fix: "Gold task refresh + QA containment",
-    owner: "QA lead",
-    metric: "Quality score; gold task pass rate",
-  },
-  tooling_issue: {
-    fix: "Tooling change + workaround comm",
-    owner: "Tooling / product ops",
-    metric: "Tooling escalations; outage incidents",
-  },
-  customer_requirement_change: {
-    fix: "Customer instruction propagation",
-    owner: "Customer ops lead + training",
-    metric: "Instruction-change escalations; CSAT",
-  },
-  sla_miss: {
-    fix: "Staffing / capacity correction",
-    owner: "Regional ops manager",
-    metric: "SLA adherence; aged backlog",
-  },
-  workflow_handoff_gap: {
-    fix: "Queue routing + named handoff owner",
-    owner: "Workflow ops lead",
-    metric: "Handoff delay; reopen rate",
-  },
-  capacity_shortfall: {
-    fix: "Staffing rebalance / surge coverage",
-    owner: "Workforce planning lead",
-    metric: "Backlog age; utilization",
-  },
+  policy_ambiguity: { fix: "SOP rewrite + calibration huddle", owner: "Policy Ops lead + frontline manager", metric: "Reviewer agreement rate; repeat escalations" },
+  reviewer_misalignment: { fix: "Reviewer calibration + QA sampling boost", owner: "Quality lead + reviewer manager", metric: "Disagreement rate; QA defect rate" },
+  quality_defect: { fix: "Gold task refresh + QA containment", owner: "QA lead", metric: "Quality score; gold task pass rate" },
+  tooling_issue: { fix: "Tooling change + workaround comm", owner: "Tooling / product ops", metric: "Tooling escalations; outage incidents" },
+  customer_requirement_change: { fix: "Customer instruction propagation", owner: "Customer ops lead + training", metric: "Instruction-change escalations; CSAT" },
+  sla_miss: { fix: "Staffing / capacity correction", owner: "Regional ops manager", metric: "SLA adherence; aged backlog" },
+  workflow_handoff_gap: { fix: "Queue routing + named handoff owner", owner: "Workflow ops lead", metric: "Handoff delay; reopen rate" },
+  capacity_shortfall: { fix: "Staffing rebalance / surge coverage", owner: "Workforce planning lead", metric: "Backlog age; utilization" },
 };
 
 export const ROOT_CAUSE_DECISION = {
@@ -79,22 +47,14 @@ export const ROOT_CAUSE_DECISION = {
 
 export const SEVERITY_LABELS = { sev1: "Sev 1", sev2: "Sev 2", sev3: "Sev 3", sev4: "Sev 4" };
 
-export const STATUS_COLORS = {
-  good: "#10B981",
-  warn: "#F59E0B",
-  bad: "#EF4444",
-  info: "#22D3EE",
-  muted: "#64748B",
-};
-
-// ─── Theme + density presets ─────────────────────────────────────────────────
+export const STATUS_COLORS = { good: "#10B981", warn: "#F59E0B", bad: "#EF4444", info: "#22D3EE", muted: "#64748B" };
 
 export const THEME_PRESETS = {
-  teal: { id: "teal", label: "Teal", accent: "#5EEAD4", accentDeep: "#0EB8A0", inkOnAccent: "#0A1A18" },
+  teal:   { id: "teal",   label: "Teal",   accent: "#5EEAD4", accentDeep: "#0EB8A0", inkOnAccent: "#0A1A18" },
   violet: { id: "violet", label: "Violet", accent: "#B79DFF", accentDeep: "#7C5CFC", inkOnAccent: "#1A0033" },
-  rose: { id: "rose", label: "Rose", accent: "#FF8FB1", accentDeep: "#F43F8C", inkOnAccent: "#2A0312" },
-  sky: { id: "sky", label: "Sky", accent: "#7DD3FC", accentDeep: "#0284C7", inkOnAccent: "#021627" },
-  amber: { id: "amber", label: "Amber", accent: "#FBBF77", accentDeep: "#EA8A1E", inkOnAccent: "#2A1804" },
+  rose:   { id: "rose",   label: "Rose",   accent: "#FF8FB1", accentDeep: "#F43F8C", inkOnAccent: "#2A0312" },
+  sky:    { id: "sky",    label: "Sky",    accent: "#7DD3FC", accentDeep: "#0284C7", inkOnAccent: "#021627" },
+  amber:  { id: "amber",  label: "Amber",  accent: "#FBBF77", accentDeep: "#EA8A1E", inkOnAccent: "#2A1804" },
 };
 
 export const DENSITY_PRESETS = {
@@ -103,57 +63,13 @@ export const DENSITY_PRESETS = {
   spacious:{ id: "spacious",label: "Spacious",padX: 64, padY: 52, gap: 24, sectionGap: 56, fontBody: 15, rowGap: 18 },
 };
 
-// ─── Audience lens (interview framing) ───────────────────────────────────────
-
 export const AUDIENCE_LENS = [
-  {
-    id: "regional_ops_lead",
-    title: "Regional Ops Lead",
-    blurb: "Owns SLA, backlog, escalations across a region.",
-    opens: ["/health", "/capacity"],
-    priorityKpis: ["sla_adherence", "backlog", "aged_backlog_72h"],
-    ai_leverage:
-      "AI scans 250+ escalation summaries each morning, surfaces recurring operational patterns, and drafts the weekly briefing. Lead spends time on decisions, not aggregation.",
-  },
-  {
-    id: "quality_lead",
-    title: "Quality Lead",
-    blurb: "Defends quality scores, runs calibration, owns rework.",
-    opens: ["/workforce", "/patterns"],
-    priorityKpis: ["avg_quality", "rework_rate"],
-    ai_leverage:
-      "Embeddings cluster escalations by how teams describe breakdowns, not just by label. Calibration targets are picked from semantic clusters, not gut feel.",
-  },
-  {
-    id: "workforce_planner",
-    title: "Workforce Planner",
-    blurb: "Allocates capacity across work types and shifts.",
-    opens: ["/capacity", "/workforce"],
-    priorityKpis: ["backlog", "escalation_rate_per_1000"],
-    ai_leverage:
-      "Forecasts backlog 7-14 days out from inflow + throughput + complexity. Flags shortfall before SLA breaks, recommends cross-train swaps.",
-  },
-  {
-    id: "customer_ops_lead",
-    title: "Customer Ops Lead",
-    blurb: "Owns CSAT, escalation experience, customer comms.",
-    opens: ["/patterns", "/clusters"],
-    priorityKpis: ["csat_7d", "fcr_proxy"],
-    ai_leverage:
-      "Semantic clustering catches when 3 different customers report the same friction with different words — fix lands before a 4th account is at risk.",
-  },
-  {
-    id: "engineering_manager",
-    title: "Engineering Manager",
-    blurb: "Wants production architecture & failure modes.",
-    opens: ["/about"],
-    priorityKpis: [],
-    ai_leverage:
-      "All scoring is deterministic and explainable; LLM is scoped to summarization + clustering, not decisions. Pipeline runs offline → JSON snapshot → cached read.",
-  },
+  { id: "regional_ops_lead", title: "Regional Ops Lead", blurb: "Owns SLA, backlog, escalations across a region.", opens: ["/health","/capacity"], priorityKpis: ["sla_adherence","backlog","aged_backlog_72h"], ai_leverage: "AI scans 250+ escalation summaries each morning, surfaces recurring patterns, drafts the weekly briefing." },
+  { id: "quality_lead", title: "Quality Lead", blurb: "Defends quality scores, runs calibration, owns rework.", opens: ["/workforce","/patterns"], priorityKpis: ["avg_quality","rework_rate"], ai_leverage: "Embeddings cluster escalations by how teams describe breakdowns, not just by label." },
+  { id: "workforce_planner", title: "Workforce Planner", blurb: "Allocates capacity across work types and shifts.", opens: ["/capacity","/workforce"], priorityKpis: ["backlog","escalation_rate_per_1000"], ai_leverage: "Forecasts backlog 7-14 days out from inflow + throughput + complexity." },
+  { id: "customer_ops_lead", title: "Customer Ops Lead", blurb: "Owns CSAT, escalation experience, customer comms.", opens: ["/patterns","/clusters"], priorityKpis: ["csat_7d","fcr_proxy"], ai_leverage: "Semantic clustering catches friction across customers before a 4th account is at risk." },
+  { id: "engineering_manager", title: "Engineering Manager", blurb: "Wants production architecture & failure modes.", opens: ["/about"], priorityKpis: [], ai_leverage: "All scoring is deterministic and explainable; LLM is scoped to summarization + clustering, not decisions." },
 ];
-
-// ─── Metric classification ───────────────────────────────────────────────────
 
 export function classifyMetric(metric, value) {
   switch (metric) {
@@ -169,21 +85,14 @@ export function classifyMetric(metric, value) {
   }
 }
 
-// ─── Formatting helpers ──────────────────────────────────────────────────────
-
 export const fmt = {
   pct:  (v) => `${Number(v).toFixed(1)}%`,
   num:  (v) => Number(v).toLocaleString("en-US"),
   dec:  (v, d = 1) => Number(v).toFixed(d),
   short:(v) => (v >= 1000 ? (v / 1000).toFixed(1) + "k" : String(Math.round(v))),
-  date: (iso) => {
-    const d = new Date(iso);
-    return d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
-  },
-  rel: (days) => (days === 0 ? "today" : days === 1 ? "1d ago" : days < 30 ? `${days}d ago` : `${Math.floor(days / 7)}w ago`),
+  date: (iso) => { const d = new Date(iso); return d.toLocaleDateString("en-US", { month: "short", day: "numeric" }); },
+  rel:  (days) => (days === 0 ? "today" : days === 1 ? "1d ago" : days < 30 ? `${days}d ago` : `${Math.floor(days / 7)}w ago`),
 };
-
-// ─── Scenario loader hook ────────────────────────────────────────────────────
 
 export function useScaleData(scenario = "current") {
   const [data, setData] = React.useState(null);
@@ -202,8 +111,6 @@ export function useScaleData(scenario = "current") {
   return { data, err, loading, scenario };
 }
 
-// ─── Sparkline ───────────────────────────────────────────────────────────────
-
 export function Sparkline({ values, color = "currentColor", width = 80, height = 24, fill = false, strokeWidth = 1.5 }) {
   if (!values || values.length < 2) return null;
   const min = Math.min(...values);
@@ -221,175 +128,320 @@ export function Sparkline({ values, color = "currentColor", width = 80, height =
   );
 }
 
-// ─── Module C: Workforce Quality derivation ─────────────────────────────────
-// Deterministic per-team risk derived from the existing team rollup. Mirrors
-// the spirit of src/workforce_quality.py: quality gap, csat gap, sev1
-// density, escalation pressure, weighted into a 0-100 risk score.
+// ─── Seeded RNG (stable per-key randomness) ─────────────────────────────────
 
-const QUALITY_TARGET = 90;
-const CSAT_TARGET = 4.4;
+function _hash(str) {
+  let h = 1779033703 ^ str.length;
+  for (let i = 0; i < str.length; i++) {
+    h = Math.imul(h ^ str.charCodeAt(i), 3432918353);
+    h = (h << 13) | (h >>> 19);
+  }
+  return () => {
+    h = Math.imul(h ^ (h >>> 16), 2246822507);
+    h = Math.imul(h ^ (h >>> 13), 3266489909);
+    return ((h ^= h >>> 16) >>> 0) / 4294967296;
+  };
+}
+export const rng  = (key) => _hash(String(key))();
+export const rngR = (key, min, max) => min + rng(key) * (max - min);
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+const round1 = (v) => Math.round(v * 10) / 10;
 
-export function deriveWorkforce(d) {
+const SKILL_LEVELS = ["L1","L2","L3","Expert"];
+const FIRST_NAMES = ["Aarav","Diya","Kabir","Anika","Vivaan","Sara","Reyansh","Myra","Arnav","Kiara","Ishaan","Aisha","Dev","Tara","Rohan","Zoya","Ved","Nia","Yash","Mira"];
+const LAST_NAMES  = ["Sharma","Nair","Iyer","Khan","Reddy","Bose","Das","Mehta","Pillai","Verma","Gupta","Sinha","Rao","Menon","Kapoor"];
+const Q_TARGET = 90;
+const SLA_TARGET = 95;
+
+// ─── Module C · Workforce Quality ───────────────────────────────────────────
+
+export function deriveQuality(d) {
   if (!d?.teams) return null;
+  const regionRework = d.kpis.rework_rate;
+
   const teams = d.teams.map((t) => {
-    const qualityGap = Math.max(0, QUALITY_TARGET - t.quality);                  // 0..15ish
-    const csatGap = Math.max(0, CSAT_TARGET - t.csat);                            // 0..1
-    const sev1Density = (t.sev1_escalations / Math.max(1, t.contributors)) * 100; // per-100 heads
-    const escDensity = (t.escalations / Math.max(1, t.contributors));             // raw per-head
-    const openLoad = t.open_escalations;
+    const r = (s) => rngR(t.team_id + s, 0, 1);
+    const qualityGap = Math.max(0, Q_TARGET - t.quality);
+    const escPer100 = t.contributors ? (t.escalations / t.contributors) * 100 : 0;
 
-    const score = Math.round(
-      Math.min(100,
-        qualityGap * 4.0 +     // 0..60
-        csatGap * 20 +         // 0..20
-        sev1Density * 0.9 +    // 0..30ish
-        Math.min(escDensity, 5) * 2 +  // capped 0..10
-        Math.min(openLoad, 20) * 0.5   // capped 0..10
-      )
-    );
-    const band = score >= 55 ? "High" : score >= 28 ? "Medium" : "Low";
-    const drivers = [];
-    if (qualityGap >= 3) drivers.push(`Quality ${t.quality.toFixed(1)} vs ${QUALITY_TARGET} target`);
-    if (csatGap >= 0.15) drivers.push(`CSAT ${t.csat.toFixed(2)} vs ${CSAT_TARGET} target`);
-    if (t.sev1_escalations >= 3) drivers.push(`${t.sev1_escalations} sev1 across ${t.contributors} heads`);
-    if (t.open_escalations >= 8) drivers.push(`${t.open_escalations} open escalations`);
-    if (drivers.length === 0) drivers.push("Holding the line — fold into calibration pool");
+    const goldFailRate = clamp((Q_TARGET - t.quality) * 0.9 + r("g") * 6 + escPer100 * 0.15, 1.5, 38);
+    const overrideRate = clamp((Q_TARGET - t.quality) * 0.7 + r("o") * 5 + 2, 1.5, 32);
+    const peerAgree    = clamp(0.94 - qualityGap * 0.006 - r("p") * 0.05, 0.55, 0.98);
+    const reworkRate   = clamp(regionRework * (0.7 + qualityGap * 0.06) + r("w") * 2, 1, 24);
+    const lowTenureShare = clamp(r("lt") * 0.5 + (t.work_type === "expert_review" ? 0.12 : 0.18), 0.06, 0.62);
 
-    const action =
-      band === "High"
-        ? "Calibration huddle this week + QA sampling boost. Pair with peer team."
-        : band === "Medium"
-          ? "Weekly check-in. Refresh top-3 gold tasks for this work type."
-          : "Maintain. Use as calibration anchor for higher-risk teams.";
+    const driftDelta = round1(rngR(t.team_id + "drift", -3.5, 4) - qualityGap * 0.12);
+    const priorQuality = round1(clamp(t.quality - driftDelta, 60, 99));
 
-    return { ...t, risk_score: score, risk_band: band, drivers, action, quality_gap: qualityGap };
+    const drivers = [
+      { k: "Quality gap to target", v: round1(qualityGap), w: qualityGap * 3.2, unit: "pt" },
+      { k: "Gold-task fail rate",   v: round1(goldFailRate), w: goldFailRate * 0.7, unit: "%" },
+      { k: "Reviewer override rate",v: round1(overrideRate), w: overrideRate * 0.55, unit: "%" },
+      { k: "Rework rate",           v: round1(reworkRate), w: reworkRate * 1.1, unit: "%" },
+      { k: "Sev1 escalations",      v: t.sev1_escalations, w: t.sev1_escalations * 4, unit: "" },
+      { k: "Open escalations",      v: t.open_escalations, w: t.open_escalations * 0.6, unit: "" },
+    ];
+    if (driftDelta < 0) drivers.push({ k: "Quality drift (declining)", v: driftDelta, w: -driftDelta * 3, unit: "pt" });
+    if (lowTenureShare > 0.35) drivers.push({ k: "Low-tenure share on complex work", v: Math.round(lowTenureShare * 100), w: (lowTenureShare - 0.35) * 30, unit: "%" });
+
+    const riskScore = Math.round(drivers.reduce((s, dr) => s + dr.w, 0));
+    const riskLevel = t.contributors < 14 ? "Insufficient" : riskScore >= 46 ? "High" : riskScore >= 24 ? "Medium" : "Low";
+
+    return {
+      team_id: t.team_id, city: t.city, manager: t.manager, shift: t.shift,
+      work_type: t.work_type, contributors: t.contributors,
+      quality: t.quality, priorQuality, driftDelta,
+      sla: t.sla, csat: t.csat,
+      goldFailRate: round1(goldFailRate), overrideRate: round1(overrideRate),
+      peerAgree: round1(peerAgree * 100), reworkRate: round1(reworkRate),
+      lowTenureShare: Math.round(lowTenureShare * 100),
+      sev1: t.sev1_escalations, open: t.open_escalations,
+      riskScore, riskLevel,
+      drivers: drivers.sort((a, b) => b.w - a.w),
+    };
   });
 
-  const sorted = [...teams].sort((a, b) => b.risk_score - a.risk_score);
+  const contributors = [];
+  teams.forEach((tm) => {
+    const n = clamp(Math.round(tm.contributors * 0.16), 3, 9);
+    for (let i = 0; i < n; i++) {
+      const seed = tm.team_id + "_c" + i;
+      const fn = FIRST_NAMES[Math.floor(rng(seed + "fn") * FIRST_NAMES.length)];
+      const ln = LAST_NAMES[Math.floor(rng(seed + "ln") * LAST_NAMES.length)];
+      const tenure = Math.round(rngR(seed + "ten", 25, 900));
+      const skillIdx = tm.work_type === "expert_review" ? 2 + Math.round(rng(seed + "sk")) : Math.floor(rng(seed + "sk") * 4);
+      const cq = round1(clamp(tm.quality + rngR(seed + "q", -10, 6), 58, 99));
+      const cGap = Math.max(0, Q_TARGET - cq);
+      const goldPass = round1(clamp(100 - cGap * 1.4 - rng(seed + "gp") * 8, 52, 99));
+      const override = round1(clamp(cGap * 0.9 + rng(seed + "ov") * 6 + 1, 1, 40));
+      const rework = round1(clamp(tm.reworkRate + rngR(seed + "rw", -3, 7), 1, 32));
+      const peer = round1(clamp(94 - cGap * 0.8 - rng(seed + "pa") * 6, 52, 98));
+      const lowTenure = tenure < 120;
+      const cScore = Math.round(cGap * 3 + (100 - goldPass) * 0.5 + override * 0.5 + rework * 1.1
+        + (lowTenure && skillIdx >= 2 ? 10 : 0) + (peer < 75 ? 8 : 0));
+      const cLevel = cScore >= 42 ? "High" : cScore >= 22 ? "Medium" : "Low";
+      const cdrivers = [
+        { k: "Quality vs target", v: round1(cGap), w: cGap * 3 },
+        { k: "Gold-task pass", v: goldPass, w: (100 - goldPass) * 0.5 },
+        { k: "Reviewer override", v: override, w: override * 0.5 },
+        { k: "Rework", v: rework, w: rework * 1.1 },
+        { k: "Peer agreement", v: peer, w: peer < 75 ? 8 : 0 },
+      ].sort((a, b) => b.w - a.w);
+      const top = cdrivers[0].k;
+      const support = lowTenure && skillIdx >= 2 ? "Pair on complex tasks + ramp plan"
+        : top === "Reviewer override" || top === "Peer agreement" ? "Reviewer calibration session"
+        : top === "Gold-task pass" ? "Targeted gold-task retraining"
+        : top === "Rework" ? "Workflow coaching + QA review"
+        : "1:1 coaching on rubric application";
+      contributors.push({
+        id: "CON_" + (seed.split("").reduce((a, c) => a + c.charCodeAt(0), 0) % 9000 + 1000),
+        name: `${fn} ${ln}`, team_id: tm.team_id, work_type: tm.work_type,
+        tenure, skill: SKILL_LEVELS[skillIdx], quality: cq, goldPass, override, rework, peer,
+        lowTenure, riskScore: cScore, riskLevel: cLevel, topDriver: top, support,
+      });
+    }
+  });
 
-  // cohort by work_type
-  const cohorts = {};
-  for (const t of teams) {
-    const c = cohorts[t.work_type] ||= { work_type: t.work_type, teams: [], avg_quality: 0, avg_csat: 0, sev1: 0, contributors: 0, risk_high: 0 };
-    c.teams.push(t);
-    c.avg_quality += t.quality;
-    c.avg_csat += t.csat;
-    c.sev1 += t.sev1_escalations;
-    c.contributors += t.contributors;
-    if (t.risk_band === "High") c.risk_high++;
-  }
-  const cohortList = Object.values(cohorts).map((c) => ({
-    ...c,
-    n: c.teams.length,
-    avg_quality: c.avg_quality / c.teams.length,
-    avg_csat: c.avg_csat / c.teams.length,
-  }));
+  const flagged = contributors.filter((c) => c.riskLevel !== "Low").sort((a, b) => b.riskScore - a.riskScore);
 
+  const byWorkType = d.workTypeRollup.map((w) => {
+    const wt = teams.filter((t) => t.work_type === w.work_type);
+    const highTeams = wt.filter((t) => t.riskLevel === "High").length;
+    const avgScore = Math.round(wt.reduce((s, t) => s + t.riskScore, 0) / (wt.length || 1));
+    const flaggedHere = flagged.filter((c) => c.work_type === w.work_type).length;
+    const level = avgScore >= 42 ? "High" : avgScore >= 22 ? "Medium" : "Low";
+    return { work_type: w.work_type, quality: w.quality, teams: wt.length, contributors: w.contributors, highTeams, avgScore, flagged: flaggedHere, level };
+  }).sort((a, b) => b.avgScore - a.avgScore);
+
+  const queue = [...teams].filter((t) => t.riskLevel !== "Insufficient").sort((a, b) => b.riskScore - a.riskScore).slice(0, 6);
+
+  const region = {
+    avgQuality: d.kpis.avg_quality,
+    reworkRate: d.kpis.rework_rate,
+    highRiskTeams: teams.filter((t) => t.riskLevel === "High").length,
+    flaggedContributors: flagged.length,
+    highRiskContributors: flagged.filter((c) => c.riskLevel === "High").length,
+    teamCount: teams.length,
+  };
+
+  return { teams: teams.sort((a, b) => b.riskScore - a.riskScore), byWorkType, flagged, queue, region, contributors };
+}
+
+// Legacy alias — used by any older importer (drilldown, etc.)
+export function deriveWorkforce(d) {
+  const q = deriveQuality(d);
+  if (!q) return null;
   return {
-    teams: sorted,
-    cohorts: cohortList,
+    teams: q.teams.map((t) => ({
+      ...t, risk_score: t.riskScore, risk_band: t.riskLevel,
+      drivers: t.drivers.map((dr) => `${dr.k}: ${dr.v}${dr.unit || ""}`),
+      action: t.riskLevel === "High" ? "Calibration huddle + QA sampling boost." : t.riskLevel === "Medium" ? "Weekly check-in; refresh top gold tasks." : "Maintain.",
+      sev1_escalations: t.sev1, escalations: 0, quality_gap: Math.max(0, 90 - t.quality),
+    })),
+    cohorts: q.byWorkType.map((c) => ({ work_type: c.work_type, n: c.teams, contributors: c.contributors, avg_quality: c.quality, avg_csat: 4.3, sev1: 0, risk_high: c.highTeams, teams: [] })),
     counts: {
-      high: teams.filter((t) => t.risk_band === "High").length,
-      medium: teams.filter((t) => t.risk_band === "Medium").length,
-      low: teams.filter((t) => t.risk_band === "Low").length,
+      high: q.region.highRiskTeams,
+      medium: q.teams.filter((t) => t.riskLevel === "Medium").length,
+      low: q.teams.filter((t) => t.riskLevel === "Low").length,
     },
   };
 }
 
-// ─── Module D: Capacity / SLA forecast derivation ───────────────────────────
-// From kpis + kpiTrends.backlog + workTypeRollup we synthesize a 7-day
-// outlook per work_type. Aligned to src/capacity_forecast.py vocabulary
-// (utilization bands, complexity factor, SLA-protective recommendation).
+// ─── Module D · Capacity, Staffing & SLA ────────────────────────────────────
 
-const SAFE_UTIL = 86;
-const HIGH_UTIL = 92;
+const BASE_THROUGHPUT = { image_annotation: 46, audio_evaluation: 34, code_review: 26, rlhf_evaluation: 30, expert_review: 16 };
+const COMPLEXITY_SHARE = { image_annotation: 0.12, audio_evaluation: 0.22, code_review: 0.34, rlhf_evaluation: 0.4, expert_review: 0.72 };
 
 export function deriveCapacity(d) {
   if (!d) return null;
-  const trend = d.kpiTrends?.backlog || [];
-  const last = trend[trend.length - 1] || d.kpis.backlog;
-  const prev = trend[trend.length - 2] || last;
-  const weeklyDelta = last - prev;          // backlog change last week
-  const projected7d = Math.max(0, Math.round(last + weeklyDelta));
-  const projected14d = Math.max(0, Math.round(last + weeklyDelta * 2));
+  const regionBacklog = d.kpis.backlog;
+  const regionAged = d.kpis.aged_backlog_72h;
+  const slaTrend = d.kpiTrends?.sla || null;
+  const slaSlope = slaTrend ? slaTrend[slaTrend.length - 2] - slaTrend[Math.max(0, slaTrend.length - 4)] : 0;
+  const backlogTrend = d.kpiTrends?.backlog || [];
+  const weekly_delta = backlogTrend.length >= 2 ? backlogTrend[backlogTrend.length - 1] - backlogTrend[backlogTrend.length - 2] : 0;
 
-  // proportional split by work_type using escalations as a load proxy
-  const totalEsc = d.workTypeRollup.reduce((s, w) => s + w.escalations, 0) || 1;
+  const wtWeights = d.workTypeRollup.map((w) => ({
+    w, weight: (w.open_escalations + 1) * 1.4 + w.escalation_rate_per_1000 * 0.6 + w.contributors * 0.04,
+  }));
+  const weightSum = wtWeights.reduce((s, x) => s + x.weight, 0) || 1;
 
-  const workTypes = d.workTypeRollup.map((w) => {
-    const share = w.escalations / totalEsc;
-    const backlogShare = Math.round(last * share);
-    const projShare7d = Math.round(projected7d * share);
-    const projShare14d = Math.round(projected14d * share);
+  const byWorkType = wtWeights.map(({ w, weight }) => {
+    const share = weight / weightSum;
+    const backlog = Math.round(regionBacklog * share);
+    const aged = Math.round(regionAged * share);
+    const basePer = BASE_THROUGHPUT[w.work_type] || 28;
+    const throughput = Math.round(w.contributors * basePer * (0.78 + rng(w.work_type + "th") * 0.16));
+    const inflow = Math.round(throughput * (1 + (w.escalation_rate_per_1000 / 100) + rngR(w.work_type + "in", -0.04, 0.12)));
+    const utilization = Math.round(clamp((inflow / Math.max(1, throughput)) * 100, 62, 138));
+    const backlogPressure = round1(backlog / Math.max(1, throughput));
+    const complexity = COMPLEXITY_SHARE[w.work_type] || 0.3;
+    const slaMiss = Math.max(0, SLA_TARGET - w.sla);
+    const agedShare = Math.round((aged / Math.max(1, backlog)) * 100);
 
-    // utilization heuristic: open load per head, scaled
-    const util = Math.min(100, Math.round(60 + (w.open_escalations / Math.max(1, w.contributors)) * 120));
-    const utilBand = util <= SAFE_UTIL ? "safe" : util <= HIGH_UTIL ? "stretched" : "overcapacity";
+    const neededHeads = Math.ceil((inflow + aged / 2) / basePer);
+    const headGap = neededHeads - w.contributors;
 
-    // SLA gap vs 95 target
-    const slaGap = Math.max(0, 95 - w.sla);
+    const drivers = [
+      { k: "Backlog pressure", v: backlogPressure, w: backlogPressure * 14, unit: "wk" },
+      { k: "Aged backlog >72h", v: agedShare, w: agedShare * 0.4, unit: "%" },
+      { k: "Utilization", v: utilization, w: Math.max(0, utilization - 100) * 1.3, unit: "%" },
+      { k: "SLA miss vs target", v: round1(slaMiss), w: slaMiss * 2.2, unit: "pt" },
+      { k: "Escalation overlay", v: w.escalation_rate_per_1000, w: w.escalation_rate_per_1000 * 0.5, unit: "/1k" },
+      { k: "Quality overlay", v: round1(Math.max(0, Q_TARGET - w.quality)), w: Math.max(0, Q_TARGET - w.quality) * 1.1, unit: "pt" },
+      { k: "High-complexity share", v: Math.round(complexity * 100), w: complexity * 14, unit: "%" },
+    ];
+    const riskScore = Math.round(drivers.reduce((s, dr) => s + dr.w, 0));
+    const riskLevel = w.contributors < 18 && w.work_type !== "expert_review" ? "Insufficient" : riskScore >= 78 ? "High" : riskScore >= 44 ? "Medium" : "Low";
 
-    // recommendation
-    let recommendation;
-    let owner = "Workforce planner";
-    if (utilBand === "overcapacity" && slaGap >= 3) {
-      recommendation = "Approve 2-week surge coverage + cross-train from adjacent work type.";
-    } else if (utilBand === "overcapacity") {
-      recommendation = "Rebalance queues — pull from lowest-utilization team into this work type.";
-    } else if (slaGap >= 4) {
-      recommendation = "SLA is breaking ahead of capacity — investigate complexity mix and tooling.";
-      owner = "Regional ops lead";
-    } else if (utilBand === "stretched") {
-      recommendation = "Watch. Hold staffing, monitor aged backlog and sev1 trend daily.";
-    } else {
-      recommendation = "Healthy. Offer this team as cross-train donor for stretched work types.";
-    }
+    const projected = round1(clamp(w.sla + slaSlope * 0.5 - Math.max(0, utilization - 100) * 0.18 - backlogPressure * 1.4, 60, 99));
+    let forecast;
+    if (projected >= SLA_TARGET && backlogPressure < 1.2) forecast = "Likely stable";
+    else if (projected >= 92) forecast = "Watchlist";
+    else if (projected >= 85) forecast = "At risk";
+    else forecast = "Recovery needed";
+
+    const sorted = [...drivers].sort((a, b) => b.w - a.w);
+    const topK = sorted[0].k;
+    const action = headGap > 0 ? `Add ${headGap} trained ${headGap === 1 ? "head" : "heads"} or surge coverage`
+      : topK === "High-complexity share" ? "Cross-train mid-tier onto complex queue"
+      : topK === "Utilization" ? "Rebalance load / shift coverage"
+      : topK === "Quality overlay" ? "Slow intake, add QA gate before SLA risk compounds"
+      : "Re-route overflow to lower-utilization team";
 
     return {
-      work_type: w.work_type,
-      teams: w.teams,
-      contributors: w.contributors,
-      backlog: backlogShare,
-      projected_7d: projShare7d,
-      projected_14d: projShare14d,
-      delta_7d: projShare7d - backlogShare,
-      sla: w.sla,
-      sla_gap: slaGap,
-      utilization: util,
-      util_band: utilBand,
-      open: w.open_escalations,
-      sev1: w.sev1,
-      recommendation,
-      owner,
+      work_type: w.work_type, contributors: w.contributors, teams: w.teams,
+      sla: w.sla, quality: w.quality, escRate: w.escalation_rate_per_1000,
+      backlog, aged, agedShare, throughput, inflow, utilization, backlogPressure,
+      complexity: Math.round(complexity * 100), neededHeads, headGap,
+      riskScore, riskLevel, projected, forecast, action, drivers: sorted,
+      // legacy aliases
+      util_band: utilization > 110 ? "overcapacity" : utilization > 100 ? "stretched" : "safe",
+      sla_gap: slaMiss, open: w.open_escalations, sev1: w.sev1,
+      projected_7d: backlog + Math.round(weekly_delta * share),
+      projected_14d: backlog + Math.round(weekly_delta * 2 * share),
+      delta_7d: Math.round(weekly_delta * share),
+      recommendation: action, owner: "Workforce planning",
     };
+  }).sort((a, b) => b.riskScore - a.riskScore);
+
+  const teams = [];
+  byWorkType.forEach((w) => {
+    const wt = d.teams.filter((t) => t.work_type === w.work_type);
+    const headSum = wt.reduce((s, t) => s + t.contributors, 0) || 1;
+    const escSum = wt.reduce((s, x) => s + x.open_escalations + 1, 0) || 1;
+    wt.forEach((t) => {
+      const escW = (t.open_escalations + 1);
+      const tShare = (t.contributors / headSum) * 0.6 + (escW / escSum) * 0.4;
+      const backlog = Math.round(w.backlog * tShare);
+      const basePer = BASE_THROUGHPUT[w.work_type] || 28;
+      const throughput = Math.round(t.contributors * basePer * (0.78 + rng(t.team_id + "th") * 0.16));
+      const utilization = Math.round(clamp((backlog / Math.max(1, throughput)) * 60 + 70 + rngR(t.team_id + "u", -6, 10), 60, 140));
+      const lowTenureHighComplex = w.complexity > 50 && rng(t.team_id + "lt") > 0.55;
+      const slaMiss = Math.max(0, SLA_TARGET - t.sla);
+      const score = Math.round(slaMiss * 2.2 + Math.max(0, utilization - 100) * 1.3 + t.open_escalations * 0.8 + (lowTenureHighComplex ? 12 : 0));
+      const level = score >= 46 ? "High" : score >= 24 ? "Medium" : "Low";
+      teams.push({
+        team_id: t.team_id, city: t.city, manager: t.manager, shift: t.shift, work_type: t.work_type,
+        contributors: t.contributors, sla: t.sla, backlog, throughput, utilization,
+        lowTenureHighComplex, openEsc: t.open_escalations, riskScore: score, riskLevel: level,
+      });
+    });
   });
 
-  // Region rollup
-  const totalBacklog = workTypes.reduce((s, w) => s + w.backlog, 0);
-  const totalProj7d = workTypes.reduce((s, w) => s + w.projected_7d, 0);
-  const totalProj14d = workTypes.reduce((s, w) => s + w.projected_14d, 0);
-  const regionUtil = Math.round(
-    workTypes.reduce((s, w) => s + w.utilization * w.contributors, 0) /
-    Math.max(1, workTypes.reduce((s, w) => s + w.contributors, 0))
-  );
-
-  // Suggested rebalances: donor (lowest util) → recipient (highest util & SLA gap)
-  const byUtil = [...workTypes].sort((a, b) => a.utilization - b.utilization);
-  const donor = byUtil[0];
-  const recipient = [...workTypes].sort((a, b) => (b.utilization + b.sla_gap) - (a.utilization + a.sla_gap))[0];
-  const rebalance = donor && recipient && donor.work_type !== recipient.work_type
-    ? { donor: donor.work_type, recipient: recipient.work_type, heads: Math.max(2, Math.round(donor.contributors * 0.08)) }
-    : null;
-
-  return {
-    region: {
-      backlog: totalBacklog,
-      projected_7d: totalProj7d,
-      projected_14d: totalProj14d,
-      utilization: regionUtil,
-      weekly_delta: weeklyDelta,
-    },
-    workTypes,
-    rebalance,
+  const region = {
+    backlog: regionBacklog, aged: regionAged,
+    agedShare: Math.round((regionAged / Math.max(1, regionBacklog)) * 100),
+    atRisk: byWorkType.filter((w) => w.forecast === "At risk" || w.forecast === "Recovery needed").length,
+    highRisk: byWorkType.filter((w) => w.riskLevel === "High").length,
+    totalHeadGap: byWorkType.reduce((s, w) => s + Math.max(0, w.headGap), 0),
+    avgSla: d.kpis.sla_adherence,
+    weekly_delta,
+    projected_7d: regionBacklog + weekly_delta,
+    projected_14d: regionBacklog + weekly_delta * 2,
+    utilization: Math.round(byWorkType.reduce((s, w) => s + w.utilization * w.contributors, 0) / Math.max(1, byWorkType.reduce((s, w) => s + w.contributors, 0))),
   };
+
+  // legacy workTypes alias
+  return { byWorkType, teams, region, rebalance: null, workTypes: byWorkType };
+}
+
+// Headline alerts shared by Home + Health
+export function buildLeadershipAlerts(d, AUR) {
+  if (!d) return [];
+  const q = deriveQuality(d);
+  const c = deriveCapacity(d);
+  const alerts = [];
+  const topPat = d.patterns.find((p) => p.risk_level === "High") || d.patterns[0];
+  if (topPat) {
+    alerts.push({
+      severity: "High", color: AUR.bad, tag: WORK_TYPE_LABELS[topPat.work_type],
+      title: `${ROOT_CAUSE_LABELS[topPat.root_cause]} in ${WORK_TYPE_LABELS[topPat.work_type]} is ${topPat.recurrence_status.toLowerCase()}`,
+      body: `${topPat.escalation_count} escalations on this pattern · ${topPat.open_count} open · last-14d ${topPat.last_14d} vs prior ${topPat.prior_14d}. Same gap failing across ${topPat.unique_teams} teams.`,
+      action: ROOT_CAUSE_DECISION[topPat.root_cause] || "Approve structural fix this week.",
+      to: "/patterns", focus: { pid: topPat.pattern_id },
+    });
+  }
+  const topCap = c?.byWorkType.find((w) => w.forecast === "At risk" || w.forecast === "Recovery needed");
+  if (topCap) {
+    alerts.push({
+      severity: topCap.forecast === "Recovery needed" ? "High" : "Medium", color: topCap.forecast === "Recovery needed" ? AUR.bad : AUR.warn,
+      tag: WORK_TYPE_LABELS[topCap.work_type],
+      title: `${WORK_TYPE_LABELS[topCap.work_type]} SLA forecast: ${topCap.forecast.toLowerCase()} next week`,
+      body: `Projected SLA ${topCap.projected}% vs 95% target · ${topCap.backlogPressure}wk backlog · ${topCap.utilization}% utilization${topCap.headGap > 0 ? ` · short ${topCap.headGap} trained heads` : ""}.`,
+      action: topCap.action + ".",
+      to: "/capacity", focus: { wt: topCap.work_type },
+    });
+  }
+  const topQ = q?.teams.find((t) => t.riskLevel === "High");
+  if (topQ && alerts.length < 3) {
+    alerts.push({
+      severity: "Medium", color: AUR.warn, tag: WORK_TYPE_LABELS[topQ.work_type],
+      title: `Quality risk concentrating on ${topQ.team_id.replace("TEAM_APAC_", "")}`,
+      body: `${topQ.manager}'s team · quality ${topQ.quality} (${topQ.driftDelta < 0 ? "down" : "up"} ${Math.abs(topQ.driftDelta)}pt) · gold-fail ${topQ.goldFailRate}% · rework ${topQ.reworkRate}%. Coaching signal, not a scoreboard.`,
+      action: "Add to weekly coaching & calibration queue.",
+      to: "/workforce", focus: { tm: topQ.team_id, wt: topQ.work_type },
+    });
+  }
+  return alerts.slice(0, 3);
 }
