@@ -1,7 +1,7 @@
 // Module A · Regional Health — three progressive levels with breadcrumb
 // on top and "follow the thread" cards at the bottom.
 // L1: work-type board · L2 (?wt=X): team comparison · L3 (?wt=X&tm=Y): team
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useDash } from "@/dashboards/app-context";
 // @ts-expect-error jsx
 import { AurSection, AurChip, MetricCell, Breadcrumb, ThreadNav, PillRow, Panel, aurMono, aurSerif, aurSans } from "@/dashboards/atoms.jsx";
