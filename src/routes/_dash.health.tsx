@@ -38,7 +38,6 @@ const HEALTH_METRICS = [
 // ─── L1 · Board ─────────────────────────────────────────────────────────────
 function Board({ data, AUR }: any) {
   const { densityPreset } = useDash();
-  const navigate = (Route as any).useNavigate?.() ?? null;
   const rollup = [...data.workTypeRollup].sort((a: any, b: any) => b.escalation_rate_per_1000 - a.escalation_rate_per_1000);
 
   return (
